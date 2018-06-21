@@ -55,12 +55,12 @@ class LoginViewController: UIViewController,GIDSignInDelegate,GIDSignInUIDelegat
         
         uid = Auth.auth().currentUser?.uid
         let ref = Database.database().reference()
-        let storage = Storage.storage().reference(forURL: "")
+        let storage = Storage.storage().reference(forURL: "gs://cloudchatroom-43223.appspot.com/")
         let key = ref.child("Users").childByAutoId().key
         let imageRef = storage.child("Users").child(uid!).child("\(key).jpeg")
         let imageData:NSData = try! NSData(contentsOf: self.profileImage)
         
-        let uploadTask = imageRef.put(imageData as Data, metadata: nil) { (metaData, error) in
+        let uploadTask = imageRef.putData(imageData as Data, metadata: nil) { (metaData, error) in
             if error != nil {
                 AppDelegate.instance().dismissActivityIndicator()
                 return
@@ -70,8 +70,10 @@ class LoginViewController: UIViewController,GIDSignInDelegate,GIDSignInUIDelegat
                 if url != nil {
                     let feed = ["userID":self.uid, "pathToImage":self.profileImage.absoluteString, "postID":key] as [String:Any]
                     
-                    ref.child("Users").updateChildValues(postFeed)
-                    AppDelegate.instance().dismissActivityIndicator()
+                    let postFeed = ["\(key)":feed]
+                    
+                ref.child("Users").updateChildValues(postFeed)
+                AppDelegate.instance().dismissActivityIndicator()
                 }
                 
             })
