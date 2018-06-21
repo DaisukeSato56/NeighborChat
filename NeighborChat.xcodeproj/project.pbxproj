@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		334DE9BE5297D02E25F10E61 /* Pods_NeighborChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A850A67604CD3BF0FBF09582 /* Pods_NeighborChat.framework */; };
 		E440C02820DA803D0075C547 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E440C02720DA803D0075C547 /* LoginViewController.swift */; };
+		E440C02A20DB651F0075C547 /* SelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E440C02920DB651F0075C547 /* SelectViewController.swift */; };
 		E46E6F8820C16A2500C8DD45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46E6F8720C16A2500C8DD45 /* AppDelegate.swift */; };
 		E46E6F8D20C16A2500C8DD45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E46E6F8B20C16A2500C8DD45 /* Main.storyboard */; };
 		E46E6F8F20C16A2500C8DD45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E46E6F8E20C16A2500C8DD45 /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 		4429132645C093F1BA0E8B35 /* Pods-NeighborChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeighborChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NeighborChat/Pods-NeighborChat.debug.xcconfig"; sourceTree = "<group>"; };
 		A850A67604CD3BF0FBF09582 /* Pods_NeighborChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeighborChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E440C02720DA803D0075C547 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E440C02920DB651F0075C547 /* SelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectViewController.swift; sourceTree = "<group>"; };
 		E46E6F8420C16A2500C8DD45 /* NeighborChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NeighborChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E46E6F8720C16A2500C8DD45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E46E6F8C20C16A2500C8DD45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				E46E6F9B20C16CC200C8DD45 /* images */,
 				E46E6F8720C16A2500C8DD45 /* AppDelegate.swift */,
 				E440C02720DA803D0075C547 /* LoginViewController.swift */,
+				E440C02920DB651F0075C547 /* SelectViewController.swift */,
 				E46E6F8B20C16A2500C8DD45 /* Main.storyboard */,
 				E46E6F8E20C16A2500C8DD45 /* Assets.xcassets */,
 				E46E6F9020C16A2500C8DD45 /* LaunchScreen.storyboard */,
@@ -285,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E440C02820DA803D0075C547 /* LoginViewController.swift in Sources */,
+				E440C02A20DB651F0075C547 /* SelectViewController.swift in Sources */,
 				E46E6F8820C16A2500C8DD45 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

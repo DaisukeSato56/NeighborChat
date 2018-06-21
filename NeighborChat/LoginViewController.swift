@@ -19,6 +19,26 @@ class LoginViewController: UIViewController,GIDSignInDelegate,GIDSignInUIDelegat
     
     var uid = Auth.auth().currentUser?.uid
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        catchLocationData()
+        
+        let googleButton = GIDSignInButton()
+        googleButton.frame = CGRect(x: 20, y: 250, width: self.view.frame.size.width-40, height: 60)
+        view.addSubview(googleButton)
+        
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let selectVC = segue.destination as! SelectViewController
+        selectVC.uid = uid
+        selectVC.profileImage = self.profileImage! as NSURL
+    }
+    
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let err = error {
             print("エラーです", err)
@@ -83,19 +103,12 @@ class LoginViewController: UIViewController,GIDSignInDelegate,GIDSignInUIDelegat
         uploadTask.resume()
     }
     
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let googleButton = GIDSignInButton()
-        googleButton.frame = CGRect(x: 20, y: 250, width: self.view.frame.size.width-40, height: 60)
-        view.addSubview(googleButton)
-        
-        GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-        GIDSignIn.sharedInstance().delegate = self
-
-        
+    func catchLocationData() {
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager = CLLocationManager()
+            locationManager.delegate = self
+            locationManager.startUpdatingLocation()
+        }
     }
 
     override func didReceiveMemoryWarning() {
