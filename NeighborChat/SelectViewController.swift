@@ -22,7 +22,9 @@ class SelectViewController: UIViewController, CLLocationManagerDelegate {
     var locality:String = String()
     var subLocality:String = String()
     var thoroughfare:String = String()
-    var subThroughfare:String = String()
+    var subThoroughfare:String = String()
+    
+    var address:String = String()
     
     @IBOutlet weak var keidoLabel: UILabel!
     @IBOutlet weak var idoLabel: UILabel!
@@ -70,6 +72,7 @@ class SelectViewController: UIViewController, CLLocationManagerDelegate {
     
 //    逆ジオコーディング処理(緯度経度を住所に変換)
     func reverseGeocode(latitude:CLLocationDegrees, longitude:CLLocationDegrees) {
+        
         let location = CLLocation(latitude: latitude, longitude: longitude)
         let geocorder = CLGeocoder()
         
@@ -99,23 +102,53 @@ class SelectViewController: UIViewController, CLLocationManagerDelegate {
                 print("\(thoroughfare)")
                 self.thoroughfare = thoroughfare
             }
-            if let subThroughfare = placeMark?.subThroughfare {
-                print("\(subThroughfare)")
-                self.subThroughfare = subThroughfare
+            if let subThoroughfare = placeMark?.subThoroughfare {
+                print("\(subThoroughfare)")
+                self.subThoroughfare = subThoroughfare
             }
             
-            self.address = self.country + self.administrativeArea + self.subAdministrativeArea + self.locality! + self.subLocality
+            self.address = self.country + self.administrativeArea + self.subAdministrativeArea + self.locality + self.subLocality
         })
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "createroom" {
             let createRoomVC = segue.destination as! CreateRoomViewController
             createRoomVC.uid = uid
             createRoomVC.profileImage = profileImage
+            
+        } else if segue.identifier == "roomsList" {
+            
+            let roomsVC = segue.destination as! RoomsViewController
+            roomsVC.uid = uid
+            roomsVC.profileImage = profileImage
+            address = self.country + self.administrativeArea + self.subAdministrativeArea + self.locality + self.subLocality
+            roomsVC.address = address
         }
+        
     }
-
+    
+    @IBAction func goCreateRoomView(_ sender: Any) {
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.stopUpdatingLocation()
+        }
+        
+        self.performSegue(withIdentifier: "createRoom", sender: nil)
+    }
+    
+    @IBAction func searchRooms(_ sender: Any) {
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.stopUpdatingLocation()
+        }
+        
+        self.performSegue(withIdentifier: "roomsList", sender: nil)
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

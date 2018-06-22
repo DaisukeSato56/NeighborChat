@@ -1,5 +1,5 @@
 //
-//  CreateRoomViewController.swift
+//  RoomsViewController.swift
 //  NeighborChat
 //
 //  Created by 佐藤大介 on 2018/06/21.
@@ -9,10 +9,11 @@
 import UIKit
 import Firebase
 
-class CreateRoomViewController: UIViewController {
+class RoomsViewController: UIViewController {
     
     var uid = Auth.auth().currentUser?.uid
     var profileImage:NSURL!
+    var address:String = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()

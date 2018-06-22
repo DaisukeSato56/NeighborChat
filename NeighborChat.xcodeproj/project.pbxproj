@@ -11,6 +11,7 @@
 		E440C02820DA803D0075C547 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E440C02720DA803D0075C547 /* LoginViewController.swift */; };
 		E440C02A20DB651F0075C547 /* SelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E440C02920DB651F0075C547 /* SelectViewController.swift */; };
 		E440C02C20DB6FEF0075C547 /* CreateRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E440C02B20DB6FEF0075C547 /* CreateRoomViewController.swift */; };
+		E440C02E20DBC8FC0075C547 /* RoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E440C02D20DBC8FC0075C547 /* RoomsViewController.swift */; };
 		E46E6F8820C16A2500C8DD45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46E6F8720C16A2500C8DD45 /* AppDelegate.swift */; };
 		E46E6F8D20C16A2500C8DD45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E46E6F8B20C16A2500C8DD45 /* Main.storyboard */; };
 		E46E6F8F20C16A2500C8DD45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E46E6F8E20C16A2500C8DD45 /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 		E440C02720DA803D0075C547 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E440C02920DB651F0075C547 /* SelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectViewController.swift; sourceTree = "<group>"; };
 		E440C02B20DB6FEF0075C547 /* CreateRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomViewController.swift; sourceTree = "<group>"; };
+		E440C02D20DBC8FC0075C547 /* RoomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsViewController.swift; sourceTree = "<group>"; };
 		E46E6F8420C16A2500C8DD45 /* NeighborChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NeighborChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E46E6F8720C16A2500C8DD45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E46E6F8C20C16A2500C8DD45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				E440C02720DA803D0075C547 /* LoginViewController.swift */,
 				E440C02920DB651F0075C547 /* SelectViewController.swift */,
 				E440C02B20DB6FEF0075C547 /* CreateRoomViewController.swift */,
+				E440C02D20DBC8FC0075C547 /* RoomsViewController.swift */,
 				E46E6F8B20C16A2500C8DD45 /* Main.storyboard */,
 				E46E6F8E20C16A2500C8DD45 /* Assets.xcassets */,
 				E46E6F9020C16A2500C8DD45 /* LaunchScreen.storyboard */,
@@ -292,6 +295,7 @@
 			files = (
 				E440C02820DA803D0075C547 /* LoginViewController.swift in Sources */,
 				E440C02C20DB6FEF0075C547 /* CreateRoomViewController.swift in Sources */,
+				E440C02E20DBC8FC0075C547 /* RoomsViewController.swift in Sources */,
 				E440C02A20DB651F0075C547 /* SelectViewController.swift in Sources */,
 				E46E6F8820C16A2500C8DD45 /* AppDelegate.swift in Sources */,
 			);
