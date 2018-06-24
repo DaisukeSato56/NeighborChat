@@ -12,6 +12,8 @@ import CoreLocation
 
 class CreateRoomViewController: UIViewController, CLLocationManagerDelegate {
     
+    var posts = [Post]()
+    
     var uid = Auth.auth().currentUser?.uid
     var profileImage:NSURL!
     var locationManager:CLLocationManager!
@@ -157,6 +159,13 @@ class CreateRoomViewController: UIViewController, CLLocationManagerDelegate {
         
         uploadTask.resume()
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let chatVC = segue.destination as! ChatViewController
+        chatVC.roomName = inputRoomNameTextField.text!
+        chatVC.address = self.address
+        chatVC.pathToImage = self.profileImage.absoluteString!
     }
 
     override func didReceiveMemoryWarning() {
