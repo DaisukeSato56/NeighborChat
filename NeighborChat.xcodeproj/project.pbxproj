@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		334DE9BE5297D02E25F10E61 /* Pods_NeighborChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A850A67604CD3BF0FBF09582 /* Pods_NeighborChat.framework */; };
+		334DE9BE5297D02E25F10E61 /* Pods_NeighborChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A850A67604CD3BF0FBF09582 /* Pods_NeighborChat.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E440C02820DA803D0075C547 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E440C02720DA803D0075C547 /* LoginViewController.swift */; };
 		E440C02A20DB651F0075C547 /* SelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E440C02920DB651F0075C547 /* SelectViewController.swift */; };
 		E440C02C20DB6FEF0075C547 /* CreateRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E440C02B20DB6FEF0075C547 /* CreateRoomViewController.swift */; };
@@ -439,7 +439,7 @@
 				DEVELOPMENT_TEAM = R9M6239WG5;
 				INFOPLIST_FILE = NeighborChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.daisukesato.NeighborChat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.daisukesato.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -455,7 +455,7 @@
 				DEVELOPMENT_TEAM = R9M6239WG5;
 				INFOPLIST_FILE = NeighborChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.daisukesato.NeighborChat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.daisukesato.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

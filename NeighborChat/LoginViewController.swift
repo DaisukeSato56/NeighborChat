@@ -75,7 +75,7 @@ class LoginViewController: UIViewController,GIDSignInDelegate,GIDSignInUIDelegat
         
         uid = Auth.auth().currentUser?.uid
         let ref = Database.database().reference()
-        let storage = Storage.storage().reference(forURL: "gs://cloudchatroom-43223.appspot.com/")
+        let storage = Storage.storage().reference(forURL: "gs://neighborchat-fa60d.appspot.com")
         let key = ref.child("Users").childByAutoId().key
         let imageRef = storage.child("Users").child(uid!).child("\(key).jpeg")
         let imageData:NSData = try! NSData(contentsOf: self.profileImage)

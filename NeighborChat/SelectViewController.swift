@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import CoreLocation
 
-class SelectViewController: UIViewController, CLLocationManagerDelegate {
+class SelectViewController: UIViewController, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var uid = Auth.auth().currentUser?.uid
     var profileImage:NSURL!
@@ -148,6 +148,76 @@ class SelectViewController: UIViewController, CLLocationManagerDelegate {
         self.performSegue(withIdentifier: "roomsList", sender: nil)
         
     }
+    
+    @IBAction func backgroundPhoto(_ sender: Any) {
+        
+        showAlertViewController()
+    }
+    
+    //アラート
+    func showAlertViewController(){
+        
+        let alertController = UIAlertController(title: "選択してください。", message: "チャットの背景画像を変更します。", preferredStyle: .actionSheet)
+        
+        let cameraButton:UIAlertAction = UIAlertAction(title: "カメラから", style: UIAlertActionStyle.default,handler: { (action:UIAlertAction!) in
+            
+            let sourceType:UIImagePickerControllerSourceType = UIImagePickerControllerSourceType.camera
+            // カメラが利用可能かチェック
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera){
+                // インスタンスの作成
+                let cameraPicker = UIImagePickerController()
+                cameraPicker.sourceType = sourceType
+                cameraPicker.delegate = self
+                cameraPicker.allowsEditing = true
+                self.present(cameraPicker, animated: true, completion: nil)
+                
+            }
+            
+        })
+        
+        let albumButton:UIAlertAction = UIAlertAction(title: "アルバムから", style: UIAlertActionStyle.default,handler: { (action:UIAlertAction!) in
+            
+            let sourceType:UIImagePickerControllerSourceType = UIImagePickerControllerSourceType.photoLibrary
+            // アルバムが利用可能かチェック
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary){
+                // インスタンスの作成
+                let cameraPicker = UIImagePickerController()
+                cameraPicker.sourceType = sourceType
+                cameraPicker.delegate = self
+                self.present(cameraPicker, animated: true, completion: nil)
+                
+            }
+            
+        })
+        
+        let cancelButton:UIAlertAction = UIAlertAction(title: " キャンセル", style: UIAlertActionStyle.cancel,handler: { (action:UIAlertAction!) in
+            
+            //キャンセル
+            
+        })
+        
+        alertController.addAction(cameraButton)
+        alertController.addAction(albumButton)
+        alertController.addAction(cancelButton)
+        
+        
+        present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
+//            Userdefaultsへ保存
+            UserDefaults.standard.set(UIImagePNGRepresentation(pickedImage), forKey: "backgroundImage")
+            
+        }
+        
+//        カメラ画面(アルバム画面を閉じる処理)
+        picker.dismiss(animated: true, completion: nil)
+    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -16,6 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
     var container:UIView!
+
+    override init() {
+        FirebaseApp.configure()
+        Database.database().isPersistenceEnabled = true
+    }
     
     class func instance() -> AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
@@ -48,10 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        FirebaseApp.configure()
+ 
         return true
     }
     
