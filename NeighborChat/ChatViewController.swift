@@ -26,8 +26,33 @@ class ChatViewController: JSQMessagesViewController {
     var incomingAvatar: JSQMessagesAvatarImage!
     var outgoingAvatar: JSQMessagesAvatarImage!
     
+    var backgroundImage = UIImage()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let imageData = UserDefaults.standard.object(forKey: "backgroundImage") {
+            
+            if (imageData as AnyObject).length != 0 {
+                
+                backgroundImage = UIImage(data: imageData as! Data)!
+                
+            } else {
+                
+                backgroundImage = UIImage(named: "background.jpeg")!
+                
+            }
+        }
+        
+        self.collectionView.backgroundColor = UIColor.clear
+        let backImageView = UIImageView()
+        backImageView.image = backgroundImage
+        backImageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        self.collectionView.insertSubview(backImageView, at: 0)
+        
+        self.getInfo()
+        
+        self.chatStart()
 
     }
     
@@ -105,7 +130,7 @@ class ChatViewController: JSQMessagesViewController {
         let rootRef = Database.database().reference(fromURL: "https://neighborchat-fa60d.firebaseio.com/").child("message").child(address).child(roomName)
         
         let timestamp = Int(NSDate().timeIntervalSince1970)
-        let post = Dictionary(String,Any)? = ["from":senderId,"name":senderDisplayName,"text":text,"timestamp":timestamp,"profileImage":pathToImage]
+        let post: Dictionary<String,Any>? = ["from":senderId,"name":senderDisplayName,"text":text,"timestamp":timestamp,"profileImage":pathToImage]
         let postRef = rootRef.childByAutoId()
         postRef.setValue(post)
         
