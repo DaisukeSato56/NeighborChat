@@ -28,6 +28,9 @@ class ChatViewController: JSQMessagesViewController {
     
     var backgroundImage = UIImage()
     
+    var aitenoImage:String!
+    var uid = Auth.auth().currentUser?.uid
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

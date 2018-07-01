@@ -14,7 +14,7 @@ class RoomsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var uid = Auth.auth().currentUser?.uid
     var profileImage:NSURL!
-//    比べるよう
+//    比べる用
     var address:String = String()
     
     var posts = [Post]()
@@ -26,7 +26,7 @@ class RoomsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var subAdministrativeArea_Array = [String]()
     var locality_Array = [String]()
     var subLocality_Array = [String]()
-    var toroughfare_Array = [String]()
+    var thoroughfare_Array = [String]()
     var subToroughfare_Array_Array = [String]()
     var pathToImage_Array = [String]()
     var roomName_Array = [String]()
@@ -41,6 +41,7 @@ class RoomsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         fetchPosts()
         
@@ -73,21 +74,76 @@ class RoomsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         self.posst.locality = locality
                         self.posst.subLocality = subLocality
                         self.roomName_Array.append(self.posst.roomName)
-                        print(self.posst.country! + self.posst.administrativeArea! + self.posst.subAdministrativeArea!
-                            + self.posst.locality! + self.posst.subLocality!)
                         //比較して入れるものを限る
-                        if ((self.posst.country! + self.posst.administrativeArea! + self.posst.subAdministrativeArea!
-                            + self.posst.locality! + self.posst.subLocality!) == self.address) {
+                        if ((self.posst.country + self.posst.administrativeArea + self.posst.subAdministrativeArea
+                            + self.posst.locality + self.posst.subLocality) == self.address) {
                             self.posts.append(self.posst)
                             self.tableView.reloadData()
                         }
                     }
-                    
                 }
             }
-            
-            
         })
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+//        画面遷移
+        performSegue(withIdentifier: "privateChat", sender: indexPath)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if (segue.identifier == "privateChat") {
+            
+            let privateChatVC = segue.destination as! PrivateChatViewController
+            
+//            Poomsの中の全てのAddressを足したものとaddressを比べる
+            let fromDBAddress = self.posst.country + self.posst.administrativeArea + self.posst.subAdministrativeArea + self.posst.locality + self.posst.subLocality
+            
+            print(address)
+            
+//            roomNameを渡す
+            privateChatVC.roomName = self.posst.roomName
+            
+//            住所を渡す
+            privateChatVC.fromDBAddress = fromDBAddress
+            
+//            pathToImageを渡す
+            privateChatVC.pathToImage = profileImage.absoluteString!
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        
+//        オーナーの名前
+        let ownerNameLabel = cell.viewWithTag(1) as! UILabel
+        ownerNameLabel.text = self.posts[indexPath.row].userID
+        
+        print(self.posts[indexPath.row].userID)
+        
+//        プロフィール
+        let profileImageView = cell.viewWithTag(2) as! UIImageView
+        let profileImageUrl = URL(string: self.posts[indexPath.row].pathToImage as String)!
+        profileImageView.sd_setImage(with: profileImageUrl, completed: nil)
+        
+//        部屋の名前
+        let roomNameLabel = cell.viewWithTag(3) as! UILabel
+        roomNameLabel.text = self.posts[indexPath.row].roomName
+        
+        return cell
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    @available(iOS 2.0, *)
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.posts.count
     }
 
     override func didReceiveMemoryWarning() {

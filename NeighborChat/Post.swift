@@ -17,5 +17,10 @@ class Post: NSObject {
     var subLocality:String = String()
     var thoroughfare:String = String()
     var subThoroughfare:String = String()
+    
+    var pathToImage:String!
+    var roomName:String!
+    var roomRule:String!
+    var userID:String!
 
 }
