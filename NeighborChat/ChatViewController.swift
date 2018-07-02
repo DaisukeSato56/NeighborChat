@@ -34,6 +34,10 @@ class ChatViewController: JSQMessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(didSwipe(sender:)))
+        rightSwipe.direction = .right
+        view.addGestureRecognizer(rightSwipe)
+        
         if let imageData = UserDefaults.standard.object(forKey: "backgroundImage") {
             
             if (imageData as AnyObject).length != 0 {
@@ -53,10 +57,53 @@ class ChatViewController: JSQMessagesViewController {
         backImageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         self.collectionView.insertSubview(backImageView, at: 0)
         
+        let topView:UIView = UIView()
+        topView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 50)
+        topView.backgroundColor = UIColor.red
+        self.view.addSubview(topView)
+        
+        //        ブラーエフェクトの作成
+        let blurEffect = UIBlurEffect(style: .dark)
+        
+        //        ブラーエフェクトからエフェクトビューを生成
+        let visualEffectView = UIVisualEffectView(effect: blurEffect)
+        
+        //        エフェクトビューのサイズを指定
+        visualEffectView.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        
+        let label = UILabel()
+        label.frame = CGRect(x: 0, y: self.view.frame.size.height/2, width: self.view.frame.size.width, height: 100)
+        label.text = roomName
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textColor = UIColor.white
+        visualEffectView.addSubview(label)
+        self.collectionView.addSubview(visualEffectView)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            // ブラービューを消す
+            visualEffectView.removeFromSuperview()
+            
+        }
+        
         self.getInfo()
         
         self.chatStart()
 
+    }
+    
+    @objc final func didSwipe(sender: UISwipeGestureRecognizer) {
+        
+        if sender.direction == .right {
+            
+            print("Right")
+            self.dismiss(animated: true, completion: nil)
+            
+        } else if sender.direction == .left {
+            
+            print("left")
+            
+        }
     }
     
 //    メッセージの位置を決める

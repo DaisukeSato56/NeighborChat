@@ -53,6 +53,7 @@ class CreateRoomViewController: UIViewController, CLLocationManagerDelegate {
             locationManager = CLLocationManager()
             locationManager.delegate = self
             locationManager.startUpdatingLocation()
+            locationManager.requestWhenInUseAuthorization()
         }
     }
     

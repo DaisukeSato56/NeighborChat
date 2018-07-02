@@ -146,6 +146,11 @@ class RoomsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return self.posts.count
     }
 
+    @IBAction func back(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

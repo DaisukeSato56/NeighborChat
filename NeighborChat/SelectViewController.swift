@@ -218,6 +218,11 @@ class SelectViewController: UIViewController, CLLocationManagerDelegate, UIImage
         picker.dismiss(animated: true, completion: nil)
     }
 
+    @IBAction func back(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
+        
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
